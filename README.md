@@ -10,22 +10,23 @@ This project was originally developed at the University of Buenos Aires (Argenti
 - UI still not converted
 
 ## How to load
-```
+
+```smalltalk
 Metacello new
-  baseline: 'MuTalk';
-  repository: 'github://pavel-krivanek/mutalk/src';
-  load.
+	baseline: 'MuTalk';
+	repository: 'github://pavel-krivanek/mutalk/src';
+	load.
 ```
 
 ## Analysis
 
-```
+```smalltalk
 | analysis alive browser |
 analysis := MutationTestingAnalysis
-    testCasesFrom: {UUIDPrimitivesTest}
-    mutating: {UUID. UUIDGenerator}
-    using: MutantOperator contents
-    with: AllTestsMethodsRunningMutantEvaluationStrategy new.
+	testCasesFrom: {UUIDPrimitivesTest}
+	mutating: {UUID. UUIDGenerator}
+	using: MutantOperator contents
+	with: AllTestsMethodsRunningMutantEvaluationStrategy new.
 analysis run.
 alive := analysis generalResult aliveMutants.
 
@@ -60,11 +61,20 @@ This Smalltalk-based tool was developed at the University of Buenos Aires (Argen
 
 > How can I run a mutation testing analysis on my packages?
 
-There are several ways: * open the Mutation Testing Runner, to do that you can go to Tools->More...->Mutation Testing Runner, or you can simply evaluate: MutationTestRunner open * within the Class Browser, go to your tests package. You can right click on the package, a class or a test method and then click on run mutations (shortcut: ALT + u)
+There are several ways:
+
+* open the Mutation Testing Runner, to do that you can go to Tools->More...->Mutation Testing Runner,
+* or you can simply evaluate: MutationTestRunner open
+* within the Class Browser, go to your tests package. You can right click on the package, a class or a test method and then click on run mutations (shortcut: ALT + u)
 
 > What is the difference between each running mode?
 
-We have four modes: * Mutate All, Run All: it means mutating all your code and then running all tests. * Mutate All, run Covering: it means mutating all your code but, for each mutated method, running tests that cover it. The result should be, in general, the same than running Mutate All, Run All, but taking less time. * Mutate Covered, Run All: it means mutating only code covered by tests and then running all tests. * Mutate Covered, Run Covering: it means mutating covered code and, for each mutated method, running tests that cover it. The result must be, in general, the same than running Mutate Covered, run All, but taking less time.
+We have four modes:
+
+* Mutate All, Run All: it means mutating all your code and then running all tests.
+* Mutate All, run Covering: it means mutating all your code but, for each mutated method, running tests that cover it. The result should be, in general, the same than running Mutate All, Run All, but taking less time.
+* Mutate Covered, Run All: it means mutating only code covered by tests and then running all tests.
+* Mutate Covered, Run Covering: it means mutating covered code and, for each mutated method, running tests that cover it. The result must be, in general, the same than running Mutate Covered, run All, but taking less time.
 
 > What is the default mode to run mutation testing?
 
